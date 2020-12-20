@@ -21,13 +21,18 @@
         path: /etc/puppetlabs/puppet/puppet.conf
         block: |
           [agent]
-          certname = $HOSTNAME
+          certname = {{ inventory_hostname }}
           environment = production
+          server = master
           runinterval = 600
     - name: make environment dirs
       file:
         path: /etc/puppetlabs/code/environments/node/manifests
         state: directory
+    - name: start puppetserver
+      service:
+        name: puppetserver
+        state: started
 
 - name: set puppet
   hosts: nodes
@@ -41,7 +46,7 @@
       blockinfile:
         path: /etc/puppetlabs/puppet/puppet.conf
         block: |
-          certname = $HOSTNAME
+          certname = {{ inventory_hostname }}
           environment = node
           server = master
           runinterval = 600

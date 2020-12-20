@@ -41,8 +41,8 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     cfg.vbguest.auto_update = false
     cfg.vm.provider:virtualbox do |vb|
       vb.name="CentOS-master"
-      vb.customize ["modifyvm", :id, "--cpus",1]
-      vb.customize ["modifyvm", :id, "--memory",2048]
+      vb.customize ["modifyvm", :id, "--cpus",2]
+      vb.customize ["modifyvm", :id, "--memory",4096]
     end
     cfg.vm.host_name="master"
     cfg.vm.synced_folder ".", "/vagrant", disabled:true
