@@ -42,7 +42,7 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     cfg.vm.provider:virtualbox do |vb|
       vb.name="CentOS-master"
       vb.customize ["modifyvm", :id, "--cpus",1]
-      vb.customize ["modifyvm", :id, "--memory",1024]
+      vb.customize ["modifyvm", :id, "--memory",2048]
     end
     cfg.vm.host_name="master"
     cfg.vm.synced_folder ".", "/vagrant", disabled:true
@@ -50,8 +50,8 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     cfg.vm.network "forwarded_port", guest: 22, host:29210, auto_correct: false, id: "ssh"
     cfg.vm.provision "shell", path: "all_settings.sh"
     cfg.vm.provision "shell", path: "master_init.sh"
-    cfg.vm.provision "file", source: "master_ans_hosts.yml", destination: "master_ans_hosts.yml"
-    cfg.vm.provision "shell", inline: "ansible-playbook master_ans_hosts.yml"
     cfg.vm.provision "shell", path: "nodes_ssh_key_settings.sh"
+    cfg.vm.provision "file", source: "puppet_settings.yml", destination: "puppet_settings.yml"
+    cfg.vm.provision "shell", inline: "ansible-playbook puppet_settings.yml"
   end
 end
