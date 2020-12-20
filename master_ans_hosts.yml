@@ -1,0 +1,16 @@
+---
+- name: settings for master
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Add ansible hosts
+      blockinfile: |
+        dest="/etc/ansible/hosts"
+        content="
+        [master]
+        master
+
+        [nodes]
+        node01
+        node02"
