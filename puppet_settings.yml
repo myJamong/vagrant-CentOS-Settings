@@ -16,6 +16,18 @@
       yum:
         name: puppetserver
         state: present
+    - name: edit puppet.conf
+      blockinfile:
+        path: /etc/puppetlabs/puppet/puppet.conf
+        block: |
+          [agent]
+          certname = $HOSTNAME
+          environment = production
+          runinterval = 600
+    - name: make environment dirs
+      file:
+        path: /etc/puppetlabs/code/environments/node/manifests
+        state: directory
 
 - name: set puppet
   hosts: nodes
@@ -25,3 +37,11 @@
       yum:
         name: puppet
         state: present
+    - name: edit puppet.conf
+      blockinfile:
+        path: /etc/puppetlabs/puppet/puppet.conf
+        block: |
+          certname = $HOSTNAME
+          environment = node
+          server = master
+          runinterval = 600
