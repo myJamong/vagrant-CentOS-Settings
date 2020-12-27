@@ -7,10 +7,10 @@ yum install sshpass -y
 
 # edit ansible hosts
 cat << EOF > /etc/ansible/hosts
-[local]
-master
+[master]
+master.puppet.test
 
 [nodes]
-node01
-node02
+node01.puppet.test
+node02.puppet.test
 EOF
