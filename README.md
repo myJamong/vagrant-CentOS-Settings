@@ -1,2 +1,2 @@
 # vagrant-CentOS-Settings
-simple settings for Vagrant with CentOS nodes
+setting puppet(1 master, 2 agent) with Vagrant
