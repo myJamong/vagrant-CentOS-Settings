@@ -12,9 +12,9 @@ Vagrant.configure(Vagrant_API_Version) do |config|
       vb.customize ["modifyvm", :id, "--cpus",1]
       vb.customize ["modifyvm", :id, "--memory",1024]
     end
-    cfg.vm.host_name="node01"
+    cfg.vm.host_name="node01.puppet.test"
     cfg.vm.synced_folder ".", "/vagrant", disabled:true
-    cfg.vm.network "public_network", ip: "222.111.71.101"
+    cfg.vm.network "public_network", ip: "222.111.71.101", bridge: "en4: Apple USB Ethernet"
     cfg.vm.network "forwarded_port", guest: 22, host:29211, auto_correct: false, id: "ssh"
     cfg.vm.provision "shell", path: "all_settings.sh"
   end
@@ -28,9 +28,9 @@ Vagrant.configure(Vagrant_API_Version) do |config|
       vb.customize ["modifyvm", :id, "--cpus",1]
       vb.customize ["modifyvm", :id, "--memory",1024]
     end
-    cfg.vm.host_name="node02"
+    cfg.vm.host_name="node02.puppet.test"
     cfg.vm.synced_folder ".", "/vagrant", disabled:true
-    cfg.vm.network "public_network", ip: "222.111.71.102"
+    cfg.vm.network "public_network", ip: "222.111.71.102", bridge: "en4: Apple USB Ethernet"
     cfg.vm.network "forwarded_port", guest: 22, host:29212, auto_correct: false, id: "ssh"
     cfg.vm.provision "shell", path: "all_settings.sh"
   end
@@ -41,12 +41,12 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     cfg.vbguest.auto_update = false
     cfg.vm.provider:virtualbox do |vb|
       vb.name="CentOS-master"
-      vb.customize ["modifyvm", :id, "--cpus",1]
-      vb.customize ["modifyvm", :id, "--memory",2048]
+      vb.customize ["modifyvm", :id, "--cpus",2]
+      vb.customize ["modifyvm", :id, "--memory",4096]
     end
-    cfg.vm.host_name="master"
+    cfg.vm.host_name="master.puppet.test"
     cfg.vm.synced_folder ".", "/vagrant", disabled:true
-    cfg.vm.network "public_network", ip: "222.111.71.100"
+    cfg.vm.network "public_network", ip: "222.111.71.100", bridge: "en4: Apple USB Ethernet"
     cfg.vm.network "forwarded_port", guest: 22, host:29210, auto_correct: false, id: "ssh"
     cfg.vm.provision "shell", path: "all_settings.sh"
     cfg.vm.provision "shell", path: "master_init.sh"
