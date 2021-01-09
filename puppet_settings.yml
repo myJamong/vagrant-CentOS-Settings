@@ -60,9 +60,5 @@
           environment = node
           server = master.puppet.test
           runinterval = 600
-    - name: start puppet service
-      service:
-        name: puppet
-        state: started
     - name: run puppet
       puppet:
