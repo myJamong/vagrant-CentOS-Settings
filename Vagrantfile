@@ -14,7 +14,7 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     end
     cfg.vm.host_name="node01.puppet.test"
     cfg.vm.synced_folder ".", "/vagrant", disabled:true
-    cfg.vm.network "public_network", ip: "222.111.71.101", bridge: "en4: Apple USB Ethernet"
+    cfg.vm.network "public_network", ip: "210.90.141.101", bridge: "en4: Apple USB Ethernet"
     cfg.vm.network "forwarded_port", guest: 22, host:29211, auto_correct: false, id: "ssh"
     cfg.vm.provision "shell", path: "all_settings.sh"
   end
@@ -30,7 +30,7 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     end
     cfg.vm.host_name="node02.puppet.test"
     cfg.vm.synced_folder ".", "/vagrant", disabled:true
-    cfg.vm.network "public_network", ip: "222.111.71.102", bridge: "en4: Apple USB Ethernet"
+    cfg.vm.network "public_network", ip: "210.90.141.102", bridge: "en4: Apple USB Ethernet"
     cfg.vm.network "forwarded_port", guest: 22, host:29212, auto_correct: false, id: "ssh"
     cfg.vm.provision "shell", path: "all_settings.sh"
   end
@@ -46,7 +46,7 @@ Vagrant.configure(Vagrant_API_Version) do |config|
     end
     cfg.vm.host_name="master.puppet.test"
     cfg.vm.synced_folder ".", "/vagrant", disabled:true
-    cfg.vm.network "public_network", ip: "222.111.71.100", bridge: "en4: Apple USB Ethernet"
+    cfg.vm.network "public_network", ip: "210.90.141.100", bridge: "en4: Apple USB Ethernet"
     cfg.vm.network "forwarded_port", guest: 22, host:29210, auto_correct: false, id: "ssh"
     cfg.vm.provision "shell", path: "all_settings.sh"
     cfg.vm.provision "shell", path: "master_init.sh"

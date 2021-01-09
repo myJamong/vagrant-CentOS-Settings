@@ -38,7 +38,7 @@
       file:
         path: /etc/puppetlabs/code/environments/node/manifests
         state: directory
-    - name: start puppetserver
+    - name: start puppetserver service
       service:
         name: puppetserver
         state: started
@@ -60,3 +60,9 @@
           environment = node
           server = master.puppet.test
           runinterval = 600
+    - name: start puppet service
+      service:
+        name: puppet
+        state: started
+    - name: run puppet
+      puppet:
